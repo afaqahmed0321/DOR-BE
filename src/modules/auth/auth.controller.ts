@@ -80,7 +80,7 @@ import { verifyOtpDto } from './dto/verify-otp.dto';
 @Controller('auth')
 @ApiBearerAuth()
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(private readonly authService: AuthService) { }
 
   // ----------------SWAGGER-DOCS--------------------------
   @ApiCreatedResponse({
