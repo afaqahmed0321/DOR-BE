@@ -5,11 +5,11 @@ import { Cache } from 'cache-manager';
 export default class AuthRepository {
   constructor(@Inject(CACHE_MANAGER) private cacheManager: Cache) {}
 
-  public async addRefreshToken(key: string, token: string): Promise<void> {
-    const result = await this.cacheManager.set(key, token, {
-      ttl: 31536000,
-    });
-  }
+  // public async addRefreshToken(key: string, token: string): Promise<void> {
+  //   const result = await this.cacheManager.set(key, token, {
+  //     ttl: 31536000,
+  //   });
+  // }
 
   public async getToken(key: string): Promise<string | unknown> {
     return await this.cacheManager.get(key);
