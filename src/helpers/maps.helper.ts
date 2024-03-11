@@ -11,14 +11,14 @@ export class WaypointService {
   constructor( private readonly httpService: HttpService) {}
 
   async getRouteWaypoints(origin: string, destination: string): Promise<any> {
-    const url = `https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${destination}&key=${this.API_KEY}`;
+    const url = `https://maps.googleapis.com/maps/api/directions/json?origin=${origin}&destination=${destination}&key=${this?.API_KEY}`;
 
     const response = await axios.get(url);
 
-    const legs = response.data.routes[0].legs;
-    const waypoints = legs.flatMap((leg: any) => leg.steps.flatMap((step: any) => step.polyline.points));
-    const decodedWaypoints: number[][][] = waypoints.map((encoded: string) => decodePolyline(encoded));
-    let flatWaypoints = decodedWaypoints.flatMap((subArray:any)=>subArray)
+    const legs = response?.data?.routes[0]?.legs;
+    const waypoints = legs?.flatMap((leg: any) => leg?.steps?.flatMap((step: any) => step?.polyline?.points));
+    const decodedWaypoints: number[][][] = waypoints?.map((encoded: string) => decodePolyline(encoded));
+    let flatWaypoints = decodedWaypoints?.flatMap((subArray:any)=>subArray)
     return flatWaypoints;
 }
 }
@@ -43,7 +43,7 @@ function decodePolyline(encoded: string): number[][] {
     result = 0;
 
     do {
-      b = encoded.charCodeAt(index++) - 63;
+      b = encoded?.charCodeAt(index++) - 63;
       result |= (b & 0x1f) << shift;
       shift += 5;
     } while (b >= 0x20);

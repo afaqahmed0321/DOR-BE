@@ -71,7 +71,7 @@ export class AuthService {
       secret: process.env.JWT_SECRET_REFRESH,
     });
 
-    await this.repository.addRefreshToken(identifier, refreshToken);
+    // await this.repository.addRefreshToken(identifier, refreshToken);
     let accessToken = this.jwtService.sign(payload);
     await this.usersService.updateUserByCriteria(criteria, {
       accessToken,
@@ -173,11 +173,11 @@ export class AuthService {
       secret: process.env.JWT_SECRET_REFRESH,
     });
     if (payload.email) {
-      await this.repository.addRefreshToken(payload.email, refreshToken);
+      // await this.repository.addRefreshToken(payload.email, refreshToken);
       await this.usersService.updateByEmail(user.email, { isLoggedIn: true });
     }
     if (payload.phone) {
-      await this.repository.addRefreshToken(payload.phone, refreshToken);
+      // await this.repository.addRefreshToken(payload.phone, refreshToken);
       await this.usersService.updateByEmail(user.phone, { isLoggedIn: true });
     }
 
@@ -346,7 +346,7 @@ export class AuthService {
     const refreshToken = this.jwtService.sign(payload, {
       secret: process.env.JWT_SECRET_REFRESH,
     });
-    await this.repository.addRefreshToken(payload.email, refreshToken);
+    // await this.repository.addRefreshToken(payload.email, refreshToken);
 
     return {
       access_token: access_token,

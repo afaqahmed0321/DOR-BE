@@ -597,21 +597,22 @@ export class AuthController {
     },
     description: SERVER_ERROR,
   })
-  @Post('refresh-token')
-  async refreshToken(
-    @Req() req: Request,
-    @Res({ passthrough: true }) res: Response,
-  ): Promise<any> {
-    const tokens: JwtTokensInterface = await this.authService.refreshToken(
-      req.cookies['refresh-token'],
-    );
+  
+  // @Post('refresh-token')
+  // async refreshToken(
+  //   @Req() req: Request,
+  //   @Res({ passthrough: true }) res: Response,
+  // ): Promise<any> {
+  //   const tokens: JwtTokensInterface = await this.authService.refreshToken(
+  //     req.cookies['refresh-token'],
+  //   );
 
-    general_token(tokens.refresh_token, res);
-    return {
-      access_token: tokens?.access_token,
-      roles: tokens?.roles,
-    };
-  }
+  //   general_token(tokens.refresh_token, res);
+  //   return {
+  //     access_token: tokens?.access_token,
+  //     roles: tokens?.roles,
+  //   };
+  // }
 
   @Get('google/login')
   @UseGuards(AuthGuard('google'))
@@ -696,22 +697,22 @@ export class AuthController {
     },
     description: SERVER_ERROR,
   })
-  @Post('social-login/:token')
-  async getTokenForSocialLogin(
-    @Param('token') token: string,
-    @Res({ passthrough: true }) res: Response,
-  ): Promise<LoginResponseInterface> {
-    const tokens: JwtTokensInterface = await this.authService.refreshToken(
-      token,
-    );
+  // @Post('social-login/:token')
+  // async getTokenForSocialLogin(
+  //   @Param('token') token: string,
+  //   @Res({ passthrough: true }) res: Response,
+  // ): Promise<LoginResponseInterface> {
+  //   const tokens: JwtTokensInterface = await this.authService.refreshToken(
+  //     token,
+  //   );
 
-    general_token(tokens.refresh_token, res);
+  //   general_token(tokens.refresh_token, res);
 
-    return {
-      access_token: tokens.access_token,
-      roles: tokens.roles,
-    };
-  }
+  //   return {
+  //     access_token: tokens.access_token,
+  //     roles: tokens.roles,
+  //   };
+  // }
 
   @ApiCreatedResponse({
     schema: {
