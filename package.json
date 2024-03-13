@@ -1,8 +1,8 @@
 {
-  "name": "route-on",
+  "name": "road-mate",
   "version": "0.0.1",
   "description": "RouteOn Backend Nest APIs",
-  "author": "M Ahmad Iqbal",
+  "author": "Afaq Ahmed",
   "private": true,
   "license": "UNLICENSED",
   "scripts": {
