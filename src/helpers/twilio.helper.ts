@@ -26,7 +26,8 @@ export class TwilioService {
       });
 
       console.log('OTP sent successfully');
-      return "OTP sent successfully";
+      return `${otp}`;
+      
     } catch (error) {
       console.error('Error sending OTP:', error);
       throw error;
