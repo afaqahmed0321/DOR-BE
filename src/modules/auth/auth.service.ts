@@ -245,23 +245,27 @@ export class AuthService {
     let user = await this.usersService.findUserByCriteria({
       phone: body.phone_number,
     });
+  
     if (!user) {
       throw new BadRequestException('User Not Found');
     }
+  
     let checkFlag = await this.twilioService.verifyOTP(
       body.phone_number,
       body.OTP,
     );
-    if (checkFlag)
+  
+    if (checkFlag) {
       await this.usersService.updateUserByCriteria(
         { phone: body.phone_number },
         { isVerified: true },
       );
-    else {
+      return 'OTP verification successful';
+    } else {
       throw new BadRequestException('OTP provided expired or wrong!');
     }
-    return checkFlag;
   }
+  
 
   async forgotPasswordOtp(email: string): Promise<string> {
     if (!(await this.usersService.findUserByEmail(email))) {
