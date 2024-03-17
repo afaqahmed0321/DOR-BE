@@ -435,13 +435,23 @@ export class AuthController {
   }
 
   @Post('send-otp')
-  sendLoginOTP(@Body() body: SendOtpDto) {
-    return this.authService.sendOtp(body);
+  async sendLoginOtp(@Body() sendOtpDto: SendOtpDto): Promise<any> {
+    try {
+      const result = await this.authService.sendOtp(sendOtpDto);
+      return { message: 'OTP sent successfully', data: result };
+    } catch (error) {
+      throw new BadRequestException(error.message);
+    }
   }
 
   @Patch('verify-otp')
-  verifyOtp(@Body() body: verifyOtpDto) {
-    return this.authService.verifyOTP(body);
+  async verifyOtp(@Body() verifyOtpDto: verifyOtpDto): Promise<any> {
+    try {
+      const result = await this.authService.verifyOTP(verifyOtpDto);
+      return { message: 'OTP verified successfully', data: result };
+    } catch (error) {
+      throw new BadRequestException(error.message);
+    }
   }
 
   @ApiCreatedResponse({
