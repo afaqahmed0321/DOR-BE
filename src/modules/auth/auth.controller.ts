@@ -438,7 +438,9 @@ export class AuthController {
   async sendLoginOtp(@Body() sendOtpDto: SendOtpDto): Promise<any> {
     try {
       const result = await this.authService.sendOtp(sendOtpDto);
+      
       return { message: 'OTP sent successfully', data: result };
+
     } catch (error) {
       throw new BadRequestException(error.message);
     }
